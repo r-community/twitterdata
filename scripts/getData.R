@@ -47,6 +47,7 @@ getData <- function(hashtag, n, filename, ...) {
         created_at = "T",
         favorite_count = "i",
         retweet_count = "i",
+        user_id = "c",
         status_id = "c",
         display_text_width = "d",
         is_quote = "l",
@@ -71,8 +72,7 @@ getData <- function(hashtag, n, filename, ...) {
 
     all_data <- current_tweet_data %>%
       dplyr::mutate(
-        created_at = lubridate::as_datetime(created_at),
-	account_created_at = lubridate::as_datetime(account_created_at)
+        created_at = lubridate::as_datetime(created_at)
       ) %>%
       dplyr::bind_rows(latest_3000) %>%
       clean_data(.)
@@ -81,8 +81,7 @@ getData <- function(hashtag, n, filename, ...) {
 
     all_data <- latest_3000 %>%
       dplyr::mutate(
-        created_at = lubridate::as_datetime(created_at),
-	account_created_at = lubridate::as_datetime(account_created_at)
+        created_at = lubridate::as_datetime(created_at)
       ) %>%
       clean_data(.)
 
