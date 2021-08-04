@@ -72,7 +72,8 @@ getData <- function(hashtag, n, filename, ...) {
 
     all_data <- current_tweet_data %>%
       dplyr::mutate(
-        created_at = lubridate::as_datetime(created_at)
+        created_at = lubridate::as_datetime(created_at),
+	account_created_at = lubridate::as_datetime(account_created_at)
       ) %>%
       dplyr::bind_rows(latest_3000) %>%
       clean_data(.)
@@ -81,7 +82,8 @@ getData <- function(hashtag, n, filename, ...) {
 
     all_data <- latest_3000 %>%
       dplyr::mutate(
-        created_at = lubridate::as_datetime(created_at)
+        created_at = lubridate::as_datetime(created_at),
+	account_created_at = lubridate::as_datetime(account_created_at)
       ) %>%
       clean_data(.)
 
